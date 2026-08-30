@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
-import Link from "next/link";
 import { SITE } from "@/lib/site";
+import NavBar from "@/components/NavBar";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -22,25 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="min-h-screen bg-background font-mono text-foreground antialiased">
         <div className="mx-auto flex min-h-screen max-w-5xl flex-col border-x border-foreground">
-          <header className="flex flex-wrap items-center justify-between gap-x-8 gap-y-3 border-b border-foreground px-6 py-5">
-            <Link
-              href="/"
-              className="text-sm font-bold uppercase tracking-[0.2em] hover:text-accent"
-            >
-              {SITE.name}
-            </Link>
-            <nav className="flex items-center gap-6 text-xs uppercase tracking-[0.2em]">
-              <a href="#projects" className="hover:text-accent">
-                Projects
-              </a>
-              <a href="#stack" className="hover:text-accent">
-                Stack
-              </a>
-              <a href="#contact" className="hover:text-accent">
-                Contact
-              </a>
-            </nav>
-          </header>
+          <NavBar />
 
           <div className="flex-1">{children}</div>
 
