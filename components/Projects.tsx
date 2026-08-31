@@ -25,7 +25,7 @@ export default function Projects(): ReactElement {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <section id="projects" className="px-12 py-20">
+    <section id="projects" className="px-6 py-20">
       <h2 className="flex items-center gap-3 text-2xl font-bold tracking-tight sm:text-3xl">
         <span aria-hidden="true" className="inline-block h-2.5 w-2.5 bg-accent" />
         Projects
