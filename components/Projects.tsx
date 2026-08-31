@@ -1,8 +1,29 @@
+"use client";
+
 import type { ReactElement } from "react";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const MARKERS: readonly string[] = ["01", "02", "03"];
 
+const gridVariants: Variants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const tileVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+};
+
 export default function Projects(): ReactElement {
+  const { ref, isInView } = useScrollReveal();
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <section id="projects" className="px-6 py-20">
       <h2 className="flex items-center gap-3 text-2xl font-bold tracking-tight sm:text-3xl">
@@ -14,10 +35,20 @@ export default function Projects(): ReactElement {
         Case studies and source repositories are currently in development.
       </p>
 
-      <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
+      <motion.div
+        ref={ref}
+        className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3"
+        initial={prefersReducedMotion ? "show" : "hidden"}
+        animate={prefersReducedMotion || isInView ? "show" : "hidden"}
+        variants={gridVariants}
+      >
         {MARKERS.map((marker, index) => (
-          <div
+          <motion.div
             key={marker}
+            variants={tileVariants}
+            whileHover={prefersReducedMotion ? undefined : { y: -4 }}
+            whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
             className={
               index === 0
                 ? "flex min-h-40 flex-col justify-between bg-surface p-6 hover:shadow-[0_0_20px_-4px_var(--accent)] sm:col-span-2"
@@ -28,9 +59,9 @@ export default function Projects(): ReactElement {
             <span className="text-xs uppercase tracking-[0.2em]">
               Currently in Development
             </span>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }
