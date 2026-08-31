@@ -37,7 +37,7 @@ export default function Contact(): ReactElement {
             <span className="text-xs uppercase tracking-[0.2em] opacity-70">
               {link.label}
             </span>
-            <span className="underline decoration-foreground/50 transition-colors duration-200 group-hover:decoration-accent text-sm tracking-[0.05em]">
+            <span className="mr-[-0.05em] inline-block underline decoration-foreground/50 transition-colors duration-200 group-hover:decoration-accent text-sm tracking-[0.05em]">
               {link.href.replace("mailto:", "")}
             </span>
           </a>
