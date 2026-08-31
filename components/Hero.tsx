@@ -165,14 +165,14 @@ export default function Hero(): ReactElement {
           <motion.a
             variants={ctaItem}
             href="#contact"
-            className="bg-accent px-8 py-3 text-base font-semibold tracking-[0.5px] text-background hover:bg-background hover:text-accent hover:shadow-[0_0_20px_-4px_var(--accent)]"
+            className="bg-accent px-8 py-3 text-base font-semibold tracking-[0.5px] text-background hover:bg-background hover:text-accent hover:shadow-[0_0_20px_-4px_var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
             Get in touch
           </motion.a>
           <motion.a
             variants={ctaItem}
             href="#projects"
-            className="border border-foreground px-8 py-3 text-base font-semibold tracking-[0.5px] text-foreground hover:bg-surface hover:shadow-[0_0_20px_-4px_var(--accent)]"
+            className="border border-foreground px-8 py-3 text-base font-semibold tracking-[0.5px] text-foreground hover:bg-surface hover:shadow-[0_0_20px_-4px_var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
             View work
           </motion.a>
