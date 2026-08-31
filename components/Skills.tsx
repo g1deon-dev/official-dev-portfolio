@@ -1,4 +1,8 @@
+"use client";
+
 import type { ReactElement } from "react";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 type SkillGroup = {
   category: string;
@@ -33,7 +37,24 @@ const SKILL_GROUPS: readonly SkillGroup[] = [
   },
 ];
 
+const gridVariants: Variants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const tileVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+};
+
 export default function Skills(): ReactElement {
+  const { ref, isInView } = useScrollReveal();
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <section id="stack" className="px-6 py-20">
       <h2 className="flex items-center gap-3 text-2xl font-bold tracking-tight sm:text-3xl">
@@ -41,10 +62,17 @@ export default function Skills(): ReactElement {
         Technical Skills
       </h2>
 
-      <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
+      <motion.div
+        ref={ref}
+        className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3"
+        initial={prefersReducedMotion ? "show" : "hidden"}
+        animate={prefersReducedMotion || isInView ? "show" : "hidden"}
+        variants={gridVariants}
+      >
         {SKILL_GROUPS.map((group, index) => (
-          <div
+          <motion.div
             key={group.category}
+            variants={tileVariants}
             className={
               index === 0
                 ? "bg-surface p-6 hover:shadow-[0_0_20px_-4px_var(--accent)] sm:col-span-2"
@@ -60,9 +88,9 @@ export default function Skills(): ReactElement {
             <p className="mt-4 text-xs leading-relaxed tracking-[0.1em]">
               {group.items.join(" · ")}
             </p>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }
