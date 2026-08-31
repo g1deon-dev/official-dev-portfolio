@@ -30,14 +30,14 @@ export default function Contact(): ReactElement {
             rel={link.href.startsWith("mailto:") ? undefined : "noreferrer"}
             className={
               link.label === "Email"
-                ? "flex min-h-32 flex-col justify-between bg-surface p-6 hover:text-accent hover:shadow-[0_0_20px_-4px_var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:col-span-2"
-                : "flex min-h-32 flex-col justify-between bg-surface p-6 hover:text-accent hover:shadow-[0_0_20px_-4px_var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                ? "group flex min-h-32 flex-col justify-between bg-surface p-6 hover:text-accent hover:shadow-[0_0_20px_-4px_var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:col-span-2"
+                : "group flex min-h-32 flex-col justify-between bg-surface p-6 hover:text-accent hover:shadow-[0_0_20px_-4px_var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             }
           >
             <span className="text-xs uppercase tracking-[0.2em] opacity-70">
               {link.label}
             </span>
-            <span className="text-sm tracking-[0.05em]">
+            <span className="underline decoration-foreground/50 transition-colors duration-200 group-hover:decoration-accent text-sm tracking-[0.05em]">
               {link.href.replace("mailto:", "")}
             </span>
           </a>
