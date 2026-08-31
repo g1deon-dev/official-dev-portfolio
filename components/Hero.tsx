@@ -75,46 +75,108 @@ const lineVariants: Variants = {
   visible: { opacity: 1, y: 0 },
 };
 
+const HEADLINE_WORDS: readonly string[] = "I build full-stack web applications".split(" ");
+
+const headlineContainer: Variants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0,
+    },
+  },
+};
+
+const headlineWord: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+};
+
+const ctaContainer: Variants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.9,
+    },
+  },
+};
+
+const ctaItem: Variants = {
+  hidden: { opacity: 0, y: 8 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+};
+
 export default function Hero(): ReactElement {
   const prefersReducedMotion = useReducedMotion();
 
   return (
     <section className="grid grid-cols-1 gap-12 px-12 py-20 md:grid-cols-[3fr_2fr]">
       <div>
-        <h1 className="max-w-xl text-[36px] font-bold leading-[1.2] tracking-[-1px] md:text-[52px]">
-          I build full-stack web applications
-        </h1>
+        <motion.h1
+          className="max-w-xl text-[36px] font-bold leading-[1.2] tracking-[-1px] md:text-[52px]"
+          initial={prefersReducedMotion ? "show" : "hidden"}
+          animate="show"
+          variants={headlineContainer}
+        >
+          {HEADLINE_WORDS.map((word, index) => (
+            <motion.span key={word + index} variants={headlineWord} className="inline-block">
+              {word}
+              {index < HEADLINE_WORDS.length - 1 ? " " : ""}
+            </motion.span>
+          ))}
+        </motion.h1>
 
         <motion.p
           className="mt-4 inline-block border border-accent px-3 py-1 text-xs uppercase tracking-[0.2em] text-accent"
-          animate={prefersReducedMotion ? undefined : { opacity: [1, 0.5, 1] }}
+          style={{ transformOrigin: "left" }}
+          initial={prefersReducedMotion ? { scaleX: 1 } : { scaleX: 0 }}
+          animate={{
+            scaleX: 1,
+            opacity: prefersReducedMotion ? 1 : [1, 0.5, 1],
+          }}
           transition={
             prefersReducedMotion
               ? undefined
-              : { duration: 2, repeat: Infinity, ease: "easeInOut" }
+              : {
+                  scaleX: { duration: 0.4, ease: "easeOut", delay: 0.6 },
+                  opacity: { duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1 },
+                }
           }
         >
           [ {SITE.status} ]
         </motion.p>
 
-        <p className="mt-6 max-w-md text-lg leading-relaxed text-secondary">
+        <motion.p
+          className="mt-6 max-w-md text-lg leading-relaxed text-secondary"
+          initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={prefersReducedMotion ? undefined : { duration: 0.5, ease: "easeOut", delay: 0.8 }}
+        >
           BSIT Student at Bicol University | Focused on Software Engineering, Full-Stack Web Development, and Data Science.
-        </p>
+        </motion.p>
 
-        <div className="mt-10 flex flex-wrap gap-4">
-          <a
+        <motion.div
+          className="mt-10 flex flex-wrap gap-4"
+          initial={prefersReducedMotion ? "show" : "hidden"}
+          animate="show"
+          variants={ctaContainer}
+        >
+          <motion.a
+            variants={ctaItem}
             href="#contact"
             className="bg-accent px-8 py-3 text-base font-semibold tracking-[0.5px] text-background hover:bg-background hover:text-accent hover:shadow-[0_0_20px_-4px_var(--accent)]"
           >
             Get in touch
-          </a>
-          <a
+          </motion.a>
+          <motion.a
+            variants={ctaItem}
             href="#projects"
             className="border border-foreground px-8 py-3 text-base font-semibold tracking-[0.5px] text-foreground hover:bg-surface hover:shadow-[0_0_20px_-4px_var(--accent)]"
           >
             View work
-          </a>
-        </div>
+          </motion.a>
+        </motion.div>
       </div>
 
       <motion.div
