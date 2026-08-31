@@ -78,11 +78,7 @@ export default function NavBar(): React.ReactElement {
             aria-label={theme === "blood-moon" ? "Switch to default theme" : "Switch to blood moon theme"}
             aria-pressed={theme === "blood-moon"}
             onClick={toggleTheme}
-            className={
-              theme === "blood-moon"
-                ? "flex h-8 w-8 items-center justify-center bg-surface text-accent hover:shadow-[0_0_16px_-2px_var(--accent)]"
-                : "flex h-8 w-8 items-center justify-center bg-surface hover:shadow-[0_0_16px_-2px_var(--accent)]"
-            }
+            className="flex h-8 w-8 items-center justify-center bg-surface transition-colors duration-300 hover:text-accent hover:shadow-[0_0_16px_-2px_var(--accent)]"
           >
             {theme === "blood-moon" ? (
               <svg
