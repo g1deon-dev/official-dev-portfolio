@@ -27,10 +27,10 @@ export default function ProjectCard({ project }: { project: Project }): ReactEle
         className="flex h-full flex-col bg-surface p-8 hover:shadow-[0_0_20px_-4px_var(--accent)]"
       >
         <div className="flex items-start justify-between gap-4">
-          <span className="text-xs uppercase tracking-[0.2em] opacity-70">
+          <span className="text-xs uppercase tracking-[0.2em] text-secondary">
             {project.role}
           </span>
-          <span className="bg-background px-2 py-1 text-xs uppercase tracking-[0.2em] opacity-70">
+          <span className="bg-background px-2 py-1 text-xs uppercase tracking-[0.2em] text-secondary">
             {STATUS_LABEL[project.status]}
           </span>
         </div>
@@ -47,7 +47,7 @@ export default function ProjectCard({ project }: { project: Project }): ReactEle
           {project.technologies.map((tech) => (
             <span
               key={tech}
-              className="bg-background px-3 py-1.5 text-xs uppercase tracking-[0.1em] opacity-70"
+              className="bg-background px-3 py-1.5 text-xs uppercase tracking-[0.1em] text-secondary"
             >
               {tech}
             </span>
