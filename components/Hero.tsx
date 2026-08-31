@@ -120,9 +120,12 @@ export default function Hero(): ReactElement {
           variants={headlineContainer}
         >
           {HEADLINE_WORDS.map((word, index) => (
-            <motion.span key={word + index} variants={headlineWord} className="inline-block">
+            <motion.span
+              key={word + index}
+              variants={headlineWord}
+              className="inline-block mr-[0.3em]"
+            >
               {word}
-              {index < HEADLINE_WORDS.length - 1 ? " " : ""}
             </motion.span>
           ))}
         </motion.h1>
