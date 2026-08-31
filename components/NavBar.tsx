@@ -5,29 +5,46 @@ import * as React from "react";
 import { SITE } from "@/lib/site";
 
 const THEME_STORAGE_KEY = "theme";
+const THEME_CHANGE_EVENT = "theme-change";
+
+function subscribeToTheme(callback: () => void): () => void {
+  window.addEventListener("storage", callback);
+  window.addEventListener(THEME_CHANGE_EVENT, callback);
+  return () => {
+    window.removeEventListener("storage", callback);
+    window.removeEventListener(THEME_CHANGE_EVENT, callback);
+  };
+}
+
+function getThemeSnapshot(): "default" | "blood-moon" {
+  return window.localStorage.getItem(THEME_STORAGE_KEY) === "blood-moon"
+    ? "blood-moon"
+    : "default";
+}
+
+function getThemeServerSnapshot(): "default" | "blood-moon" {
+  return "default";
+}
 
 export default function NavBar(): React.ReactElement {
   const [open, setOpen] = React.useState<boolean>(false);
-  const [theme, setTheme] = React.useState<"default" | "blood-moon">(() => {
-    if (typeof window === "undefined") {
-      return "default";
-    }
-    return window.localStorage.getItem(THEME_STORAGE_KEY) === "blood-moon"
-      ? "blood-moon"
-      : "default";
-  });
+  const theme = React.useSyncExternalStore(
+    subscribeToTheme,
+    getThemeSnapshot,
+    getThemeServerSnapshot,
+  );
 
   const closeMenu = (): void => setOpen(false);
 
   const toggleTheme = (): void => {
     const next = theme === "blood-moon" ? "default" : "blood-moon";
-    setTheme(next);
     if (next === "blood-moon") {
       document.documentElement.setAttribute("data-theme", "blood-moon");
     } else {
       document.documentElement.removeAttribute("data-theme");
     }
     window.localStorage.setItem(THEME_STORAGE_KEY, next);
+    window.dispatchEvent(new Event(THEME_CHANGE_EVENT));
   };
 
   return (
