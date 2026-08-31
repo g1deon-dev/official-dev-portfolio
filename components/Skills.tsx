@@ -35,17 +35,21 @@ const SKILL_GROUPS: readonly SkillGroup[] = [
 
 export default function Skills(): ReactElement {
   return (
-    <section id="stack" className="border-t border-foreground px-6 py-20">
+    <section id="stack" className="px-6 py-20">
       <h2 className="flex items-center gap-3 text-2xl font-bold tracking-tight sm:text-3xl">
         <span aria-hidden="true" className="inline-block h-2.5 w-2.5 bg-accent" />
         Technical Skills
       </h2>
 
-      <div className="mt-10 grid grid-cols-1 border-l border-t border-foreground sm:grid-cols-2">
-        {SKILL_GROUPS.map((group) => (
+      <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
+        {SKILL_GROUPS.map((group, index) => (
           <div
             key={group.category}
-            className="border-b border-r border-foreground p-6"
+            className={
+              index === 0
+                ? "bg-surface p-6 hover:shadow-[0_0_20px_-4px_var(--accent)] sm:col-span-2"
+                : "bg-surface p-6 hover:shadow-[0_0_20px_-4px_var(--accent)]"
+            }
           >
             <h3 className="text-sm font-bold uppercase tracking-[0.2em]">
               {group.category}

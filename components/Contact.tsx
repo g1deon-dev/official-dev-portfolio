@@ -11,7 +11,7 @@ const LINKS: readonly { label: string; href: string }[] = [
 
 export default function Contact(): ReactElement {
   return (
-    <section id="contact" className="border-t border-foreground px-6 py-20">
+    <section id="contact" className="px-6 py-20">
       <h2 className="flex items-center gap-3 text-2xl font-bold tracking-tight sm:text-3xl">
         <span aria-hidden="true" className="inline-block h-2.5 w-2.5 bg-accent" />
         Contact
@@ -21,14 +21,18 @@ export default function Contact(): ReactElement {
         Reach out directly through either channel below.
       </p>
 
-      <div className="mt-10 grid grid-cols-1 border-l border-t border-foreground sm:grid-cols-2">
+      <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
         {LINKS.map((link) => (
           <a
             key={link.label}
             href={link.href}
             target={link.href.startsWith("mailto:") ? undefined : "_blank"}
             rel={link.href.startsWith("mailto:") ? undefined : "noreferrer"}
-            className="flex min-h-32 flex-col justify-between border-b border-r border-foreground p-6 hover:text-accent"
+            className={
+              link.label === "Email"
+                ? "flex min-h-32 flex-col justify-between bg-surface p-6 hover:text-accent hover:shadow-[0_0_20px_-4px_var(--accent)] sm:col-span-2"
+                : "flex min-h-32 flex-col justify-between bg-surface p-6 hover:text-accent hover:shadow-[0_0_20px_-4px_var(--accent)]"
+            }
           >
             <span className="text-xs uppercase tracking-[0.2em] opacity-70">
               {link.label}

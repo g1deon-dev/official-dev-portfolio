@@ -12,21 +12,26 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#0a0a0a",
+  themeColor: "#0a1628",
 };
+
+const THEME_INIT_SCRIPT = `(function(){try{var t=localStorage.getItem('theme');if(t==='blood-moon'){document.documentElement.setAttribute('data-theme','blood-moon');}}catch(e){}})();`;
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en">
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+      </head>
       <body className="min-h-screen bg-background font-mono text-foreground antialiased">
-        <div className="mx-auto flex min-h-screen max-w-5xl flex-col border-x border-foreground">
+        <div className="mx-auto flex min-h-screen max-w-5xl flex-col">
           <NavBar />
 
           <div className="flex-1">{children}</div>
 
-          <footer className="border-t border-foreground px-6 py-5 text-xs">
+          <footer className="px-6 py-8 text-xs">
             <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-4">
               <p className="flex items-center gap-2 uppercase tracking-[0.2em]">
                 <span aria-hidden="true" className="inline-block h-2.5 w-2.5 bg-accent" />

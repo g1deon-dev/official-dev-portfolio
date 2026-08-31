@@ -18,13 +18,13 @@ export default function Hero(): ReactElement {
       <div className="mt-10 flex flex-wrap gap-4">
         <a
           href="#contact"
-          className="border border-foreground bg-foreground px-6 py-3 text-xs uppercase tracking-[0.2em] text-background hover:bg-background hover:text-accent"
+          className="bg-foreground px-6 py-3 text-xs uppercase tracking-[0.2em] text-background hover:shadow-[0_0_20px_-4px_var(--accent)]"
         >
           Get in touch
         </a>
         <a
           href="#projects"
-          className="border border-foreground px-6 py-3 text-xs uppercase tracking-[0.2em] hover:text-accent"
+          className="bg-surface px-6 py-3 text-xs uppercase tracking-[0.2em] hover:text-accent hover:shadow-[0_0_20px_-4px_var(--accent)]"
         >
           View work
         </a>
