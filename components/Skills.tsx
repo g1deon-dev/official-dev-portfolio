@@ -82,7 +82,7 @@ export default function Skills(): ReactElement {
             <h3 className="text-sm font-bold uppercase tracking-[0.2em]">
               {group.category}
             </h3>
-            <p className="mt-3 max-w-prose text-xs leading-relaxed opacity-70">
+            <p className="mt-3 max-w-prose text-xs leading-relaxed text-secondary">
               {group.description}
             </p>
             <p className="mt-4 text-xs leading-relaxed tracking-[0.1em]">
