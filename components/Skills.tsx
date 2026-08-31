@@ -64,7 +64,7 @@ export default function Skills(): ReactElement {
 
       <motion.div
         ref={ref}
-        className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3"
+        className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3"
         initial={prefersReducedMotion ? "show" : "hidden"}
         animate={prefersReducedMotion || isInView ? "show" : "hidden"}
         variants={gridVariants}
