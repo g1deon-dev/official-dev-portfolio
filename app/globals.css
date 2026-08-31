@@ -4,22 +4,29 @@
   --background: #0a1628;
   --surface: #101d33;
   --foreground: #c9d3e0;
+  --secondary: #9ca3af;
   --accent: #22d3ee;
+  --code-string: #86efac;
 }
 
 :root[data-theme="blood-moon"] {
   --background: #180a10;
   --surface: #220e15;
   --foreground: #f2c6ce;
+  --secondary: #c49aa3;
   --accent: #ff4d6d;
+  --code-string: #f2b880;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-surface: var(--surface);
   --color-foreground: var(--foreground);
+  --color-secondary: var(--secondary);
   --color-accent: var(--accent);
+  --color-code-string: var(--code-string);
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  --font-code: "Courier New", ui-monospace, SFMono-Regular, monospace;
 }
 
 body {
