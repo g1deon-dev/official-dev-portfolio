@@ -37,17 +37,13 @@ export default function Projects(): ReactElement {
 
       <motion.div
         ref={ref}
-        className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-3"
+        className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3"
         initial={prefersReducedMotion ? "show" : "hidden"}
         animate={prefersReducedMotion || isInView ? "show" : "hidden"}
         variants={gridVariants}
       >
-        {projects.map((project, index) => (
-          <motion.div
-            key={project.id}
-            variants={tileVariants}
-            className={index === 0 ? "sm:col-span-2" : undefined}
-          >
+        {projects.map((project) => (
+          <motion.div key={project.id} variants={tileVariants}>
             <ProjectCard project={project} />
           </motion.div>
         ))}
