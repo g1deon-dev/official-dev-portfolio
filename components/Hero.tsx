@@ -12,7 +12,7 @@ export default function Hero(): ReactElement {
       </h1>
 
       <p className="mt-6 max-w-2xl text-sm leading-relaxed sm:text-base">
-        BSIT student at Bicol University — I design and ship full-stack web applications and IoT systems.
+        BSIT Student at Bicol University | Focused on Software Engineering, Full-Stack Web Development, and Data Science.
       </p>
 
       <div className="mt-10 flex flex-wrap gap-4">
