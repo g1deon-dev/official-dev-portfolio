@@ -7,6 +7,7 @@
   --secondary: #9ca3af;
   --accent: #22d3ee;
   --code-string: #86efac;
+  --card-border: #1f2937;
 }
 
 :root[data-theme="blood-moon"] {
@@ -16,6 +17,7 @@
   --secondary: #c49aa3;
   --accent: #ff4d6d;
   --code-string: #f2b880;
+  --card-border: #2d1620;
 }
 
 @theme inline {
@@ -25,6 +27,7 @@
   --color-secondary: var(--secondary);
   --color-accent: var(--accent);
   --color-code-string: var(--code-string);
+  --color-card-border: var(--card-border);
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
   --font-code: "Courier New", ui-monospace, SFMono-Regular, monospace;
 }
