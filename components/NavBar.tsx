@@ -75,22 +75,41 @@ export default function NavBar(): React.ReactElement {
 
           <button
             type="button"
-            aria-label="Toggle blood moon theme"
+            aria-label={theme === "blood-moon" ? "Switch to default theme" : "Switch to blood moon theme"}
             aria-pressed={theme === "blood-moon"}
             onClick={toggleTheme}
-            className="flex h-8 w-8 items-center justify-center bg-surface hover:shadow-[0_0_16px_-2px_var(--accent)]"
+            className={
+              theme === "blood-moon"
+                ? "flex h-8 w-8 items-center justify-center bg-surface text-accent hover:shadow-[0_0_16px_-2px_var(--accent)]"
+                : "flex h-8 w-8 items-center justify-center bg-surface hover:shadow-[0_0_16px_-2px_var(--accent)]"
+            }
           >
-            <svg
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-              className="h-4 w-4"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <circle cx="12" cy="12" r="4" />
-              <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9l-2.1 2.1M7 17l-2.1 2.1" />
-            </svg>
+            {theme === "blood-moon" ? (
+              <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                className="h-4 w-4"
+                fill="currentColor"
+                stroke="currentColor"
+                strokeWidth={1}
+              >
+                <circle cx="12" cy="12" r="6" />
+                <circle cx="12" cy="12" r="9" fill="none" opacity="0.35" />
+              </svg>
+            ) : (
+              <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                className="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+              </svg>
+            )}
           </button>
 
           <button
