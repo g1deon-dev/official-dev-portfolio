@@ -90,11 +90,8 @@ export default function NavBar(): React.ReactElement {
                 aria-hidden="true"
                 className="h-4 w-4"
                 fill="currentColor"
-                stroke="currentColor"
-                strokeWidth={1}
               >
-                <circle cx="12" cy="12" r="6" />
-                <circle cx="12" cy="12" r="9" fill="none" opacity="0.35" />
+                <circle cx="12" cy="12" r="8" />
               </svg>
             ) : (
               <svg
