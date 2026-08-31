@@ -3,6 +3,9 @@ import { SITE } from "@/lib/site";
 
 const LINKS: readonly { label: string; href: string }[] = [
   { label: "GitHub", href: SITE.github },
+  { label: "LinkedIn", href: SITE.linkedin },
+  { label: "Facebook", href: SITE.facebook },
+  { label: "Discord", href: SITE.discord },
   { label: "Email", href: `mailto:${SITE.email}` },
 ];
 
@@ -23,8 +26,8 @@ export default function Contact(): ReactElement {
           <a
             key={link.label}
             href={link.href}
-            target={link.label === "GitHub" ? "_blank" : undefined}
-            rel={link.label === "GitHub" ? "noreferrer" : undefined}
+            target={link.href.startsWith("mailto:") ? undefined : "_blank"}
+            rel={link.href.startsWith("mailto:") ? undefined : "noreferrer"}
             className="flex min-h-32 flex-col justify-between border-b border-r border-foreground p-6 hover:text-accent"
           >
             <span className="text-xs uppercase tracking-[0.2em] opacity-70">
