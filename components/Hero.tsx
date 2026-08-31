@@ -1,34 +1,144 @@
-import type { ReactElement } from "react";
+"use client";
+
+import type { ReactElement, ReactNode } from "react";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { SITE } from "@/lib/site";
+
+type BootLine = {
+  time: string;
+  content: ReactNode;
+};
+
+const BOOT_LINES: readonly BootLine[] = [
+  {
+    time: "0.001",
+    content: (
+      <>
+        BOOT <span className="text-accent">elijah-dev</span>
+      </>
+    ),
+  },
+  {
+    time: "0.048",
+    content: (
+      <>
+        role........<span className="text-code-string">Full-Stack Builder</span>
+      </>
+    ),
+  },
+  {
+    time: "0.112",
+    content: (
+      <>
+        stack.......<span className="text-code-string">Next.js · React · Tailwind</span>
+      </>
+    ),
+  },
+  {
+    time: "0.187",
+    content: (
+      <>
+        focus.......<span className="text-code-string">Web · IoT · Data Science</span>
+      </>
+    ),
+  },
+  {
+    time: "0.240",
+    content: (
+      <>
+        status......<span className="text-code-string">{SITE.status}</span>
+      </>
+    ),
+  },
+  {
+    time: "0.301",
+    content: (
+      <>
+        origin......<span className="text-code-string">Bicol University</span>
+      </>
+    ),
+  },
+];
+
+const listVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const lineVariants: Variants = {
+  hidden: { opacity: 0, y: 4 },
+  visible: { opacity: 1, y: 0 },
+};
 
 export default function Hero(): ReactElement {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
-    <section className="px-6 py-20">
-      <p className="text-xs uppercase tracking-[0.2em] text-accent">
-        ELIJAH GIDEON B. YANTO
-      </p>
+    <section className="grid grid-cols-1 gap-12 px-12 py-20 md:grid-cols-[3fr_2fr]">
+      <div>
+        <h1 className="max-w-xl text-[36px] font-bold leading-[1.2] tracking-[-1px] md:text-[52px]">
+          I build full-stack web applications
+        </h1>
 
-      <h1 className="mt-6 max-w-3xl text-3xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl">
-        I build full-stack web applications and IoT systems.
-      </h1>
-
-      <p className="mt-6 max-w-2xl text-sm leading-relaxed sm:text-base">
-        BSIT Student at Bicol University | Focused on Software Engineering, Full-Stack Web Development, and Data Science.
-      </p>
-
-      <div className="mt-10 flex flex-wrap gap-4">
-        <a
-          href="#contact"
-          className="bg-foreground px-6 py-3 text-xs uppercase tracking-[0.2em] text-background hover:shadow-[0_0_20px_-4px_var(--accent)]"
+        <motion.p
+          className="mt-4 inline-block border border-accent px-3 py-1 text-xs uppercase tracking-[0.2em] text-accent"
+          animate={prefersReducedMotion ? undefined : { opacity: [1, 0.5, 1] }}
+          transition={
+            prefersReducedMotion
+              ? undefined
+              : { duration: 2, repeat: Infinity, ease: "easeInOut" }
+          }
         >
-          Get in touch
-        </a>
-        <a
-          href="#projects"
-          className="bg-surface px-6 py-3 text-xs uppercase tracking-[0.2em] hover:text-accent hover:shadow-[0_0_20px_-4px_var(--accent)]"
-        >
-          View work
-        </a>
+          [ {SITE.status} ]
+        </motion.p>
+
+        <p className="mt-6 max-w-md text-lg leading-relaxed text-secondary">
+          BSIT Student at Bicol University | Focused on Software Engineering, Full-Stack Web Development, and Data Science.
+        </p>
+
+        <div className="mt-10 flex flex-wrap gap-4">
+          <a
+            href="#contact"
+            className="bg-accent px-8 py-3 text-base font-semibold tracking-[0.5px] text-background hover:bg-background hover:text-accent hover:shadow-[0_0_20px_-4px_var(--accent)]"
+          >
+            Get in touch
+          </a>
+          <a
+            href="#projects"
+            className="border border-foreground px-8 py-3 text-base font-semibold tracking-[0.5px] text-foreground hover:bg-surface hover:shadow-[0_0_20px_-4px_var(--accent)]"
+          >
+            View work
+          </a>
+        </div>
       </div>
+
+      <motion.div
+        className="border border-[#1f2937] bg-surface p-8 font-code text-[13px] leading-[1.6]"
+        initial={prefersReducedMotion ? "visible" : "hidden"}
+        animate="visible"
+        variants={listVariants}
+      >
+        {BOOT_LINES.map((line) => (
+          <motion.p key={line.time} variants={prefersReducedMotion ? undefined : lineVariants}>
+            <span className="text-secondary">[{line.time}]</span> {line.content}
+          </motion.p>
+        ))}
+        <motion.span
+          aria-hidden="true"
+          className="inline-block h-[13px] w-[7px] bg-accent align-middle"
+          animate={prefersReducedMotion ? { opacity: 1 } : { opacity: [1, 1, 0, 0] }}
+          transition={
+            prefersReducedMotion
+              ? undefined
+              : { duration: 1, repeat: Infinity, times: [0, 0.5, 0.5, 1] }
+          }
+        />
+      </motion.div>
     </section>
   );
 }
