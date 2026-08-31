@@ -52,23 +52,23 @@ export default function NavBar(): React.ReactElement {
       <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-3 px-6 py-6">
         <Link
           href="/"
-          className="text-sm font-bold uppercase tracking-[0.2em] hover:text-accent"
+          className="text-sm font-bold uppercase tracking-[0.2em] hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
         >
           {SITE.name}
         </Link>
 
         <div className="flex items-center gap-4">
           <nav className="hidden items-center gap-6 text-xs uppercase tracking-[0.2em] md:flex">
-            <Link href="/" className="hover:text-accent">
+            <Link href="/" className="hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
               Home
             </Link>
-            <a href="#stack" className="hover:text-accent">
+            <a href="#stack" className="hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
               Tech Stack
             </a>
-            <a href="#projects" className="hover:text-accent">
+            <a href="#projects" className="hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
               Projects
             </a>
-            <a href="#contact" className="hover:text-accent">
+            <a href="#contact" className="hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
               Contact
             </a>
           </nav>
@@ -80,8 +80,8 @@ export default function NavBar(): React.ReactElement {
             onClick={toggleTheme}
             className={
               theme === "blood-moon"
-                ? "flex h-8 w-8 items-center justify-center bg-surface text-accent hover:shadow-[0_0_16px_-2px_var(--accent)]"
-                : "flex h-8 w-8 items-center justify-center bg-surface hover:shadow-[0_0_16px_-2px_var(--accent)]"
+                ? "flex h-8 w-8 items-center justify-center bg-surface text-accent hover:shadow-[0_0_16px_-2px_var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                : "flex h-8 w-8 items-center justify-center bg-surface hover:shadow-[0_0_16px_-2px_var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             }
           >
             {theme === "blood-moon" ? (
@@ -114,7 +114,7 @@ export default function NavBar(): React.ReactElement {
             aria-label="Toggle menu"
             aria-expanded={open}
             onClick={() => setOpen((prev) => !prev)}
-            className="flex h-8 w-8 items-center justify-center bg-surface hover:shadow-[0_0_16px_-2px_var(--accent)] md:hidden"
+            className="flex h-8 w-8 items-center justify-center bg-surface hover:shadow-[0_0_16px_-2px_var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent md:hidden"
           >
             <svg
               viewBox="0 0 24 24"
@@ -139,28 +139,28 @@ export default function NavBar(): React.ReactElement {
           <Link
             href="/"
             onClick={closeMenu}
-            className="px-4 py-4 hover:text-accent"
+            className="px-4 py-4 hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
             Home
           </Link>
           <a
             href="#stack"
             onClick={closeMenu}
-            className="px-4 py-4 hover:text-accent"
+            className="px-4 py-4 hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
             Tech Stack
           </a>
           <a
             href="#projects"
             onClick={closeMenu}
-            className="px-4 py-4 hover:text-accent"
+            className="px-4 py-4 hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
             Projects
           </a>
           <a
             href="#contact"
             onClick={closeMenu}
-            className="px-4 py-4 hover:text-accent"
+            className="px-4 py-4 hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
             Contact
           </a>

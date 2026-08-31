@@ -42,7 +42,7 @@ export default function RootLayout({
                   href={SITE.github}
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-accent"
+                  className="hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                 >
                   GitHub
                 </a>
@@ -50,7 +50,7 @@ export default function RootLayout({
                   href={SITE.linkedin}
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-accent"
+                  className="hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                 >
                   LinkedIn
                 </a>
