@@ -8,6 +8,7 @@
   --accent: #22d3ee;
   --code-string: #86efac;
   --card-border: #1f2937;
+  --shadow-tint: rgba(201, 211, 224, 0.08);
 }
 
 :root[data-theme="blood-moon"] {
@@ -18,6 +19,7 @@
   --accent: #ff4d6d;
   --code-string: #f2b880;
   --card-border: #2d1620;
+  --shadow-tint: rgba(242, 198, 206, 0.08);
 }
 
 @theme inline {
