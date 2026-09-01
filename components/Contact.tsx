@@ -28,6 +28,13 @@ type ContactLink = {
   icon: ReactNode;
 };
 
+function formatDisplayValue(href: string): string {
+  if (href.startsWith("mailto:")) {
+    return href.replace("mailto:", "");
+  }
+  return href.replace(/^https?:\/\/(www\.)?/, "");
+}
+
 const LINKS: readonly ContactLink[] = [
   {
     label: "GitHub",
@@ -85,8 +92,8 @@ export default function Contact(): ReactElement {
                 {link.icon}
               </span>
             </div>
-            <span className="mr-[-0.05em] inline-block underline decoration-foreground/50 transition-colors duration-200 group-hover:decoration-accent text-sm tracking-[0.05em]">
-              {link.href.replace("mailto:", "")}
+            <span className="mr-[-0.05em] block truncate underline decoration-foreground/50 transition-colors duration-200 group-hover:decoration-accent text-sm tracking-[0.05em]">
+              {formatDisplayValue(link.href)}
             </span>
           </a>
         ))}
