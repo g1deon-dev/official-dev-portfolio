@@ -26,8 +26,8 @@ export default function Projects(): ReactElement {
 
   return (
     <section id="projects" className="px-6 py-20">
-      <h2 className="flex items-center gap-3 text-2xl font-bold tracking-tight sm:text-3xl">
-        <span aria-hidden="true" className="inline-block h-2.5 w-2.5 bg-accent" />
+      <h2 className="flex items-center gap-3 text-3xl font-bold tracking-tight sm:text-4xl">
+        <span aria-hidden="true" className="inline-block h-3 w-3 bg-accent" />
         Projects
       </h2>
 
@@ -37,7 +37,7 @@ export default function Projects(): ReactElement {
 
       <motion.div
         ref={ref}
-        className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+        className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
         initial={prefersReducedMotion ? "show" : "hidden"}
         animate={prefersReducedMotion || isInView ? "show" : "hidden"}
         variants={gridVariants}
