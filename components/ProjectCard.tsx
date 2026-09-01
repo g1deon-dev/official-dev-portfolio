@@ -58,7 +58,11 @@ export default function ProjectCard({ project }: { project: Project }): ReactEle
           <span>View on GitHub</span>
           <span
             aria-hidden="true"
-            className="opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+            className={
+              prefersReducedMotion
+                ? "opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                : "opacity-0 transition-[opacity,transform] duration-300 group-hover:translate-x-1 group-hover:opacity-100"
+            }
           >
             →
           </span>
