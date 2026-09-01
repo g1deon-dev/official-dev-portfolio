@@ -2,6 +2,7 @@
 
 import type { ReactElement } from "react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { Code2, Cpu, Globe, Wrench, type LucideIcon } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 type SkillGroup = {
@@ -37,6 +38,13 @@ const SKILL_GROUPS: readonly SkillGroup[] = [
   },
 ];
 
+const SKILL_ICONS: Record<string, LucideIcon> = {
+  "Core Languages": Code2,
+  "Web Technologies": Globe,
+  "Tools & Workflows": Wrench,
+  "Embedded & IoT": Cpu,
+};
+
 const gridVariants: Variants = {
   hidden: {},
   show: {
@@ -69,23 +77,32 @@ export default function Skills(): ReactElement {
         animate={prefersReducedMotion || isInView ? "show" : "hidden"}
         variants={gridVariants}
       >
-        {SKILL_GROUPS.map((group) => (
-          <motion.div
-            key={group.category}
-            variants={tileVariants}
-            className="bg-surface p-6 shadow-[0_1px_3px_var(--shadow-tint)] transition-shadow duration-300 hover:shadow-[0_0_20px_-4px_var(--accent)]"
-          >
-            <h3 className="text-sm font-bold uppercase tracking-[0.2em]">
-              {group.category}
-            </h3>
-            <p className="mt-3 max-w-prose text-xs leading-relaxed text-secondary">
-              {group.description}
-            </p>
-            <p className="mt-4 text-xs leading-relaxed tracking-[0.1em]">
-              {group.items.join(" · ")}
-            </p>
-          </motion.div>
-        ))}
+        {SKILL_GROUPS.map((group) => {
+          const Icon = SKILL_ICONS[group.category];
+          return (
+            <motion.div
+              key={group.category}
+              variants={tileVariants}
+              className="group bg-surface p-6 shadow-[0_1px_3px_var(--shadow-tint)] transition-shadow duration-300 hover:shadow-[0_0_20px_-4px_var(--accent)]"
+            >
+              <div className="flex items-center gap-3">
+                <Icon
+                  aria-hidden="true"
+                  className="h-6 w-6 text-secondary transition-colors duration-300 group-hover:text-accent"
+                />
+                <h3 className="text-sm font-bold uppercase tracking-[0.2em]">
+                  {group.category}
+                </h3>
+              </div>
+              <p className="mt-3 max-w-prose text-xs leading-relaxed text-secondary">
+                {group.description}
+              </p>
+              <p className="mt-4 text-xs leading-relaxed tracking-[0.1em]">
+                {group.items.join(" · ")}
+              </p>
+            </motion.div>
+          );
+        })}
       </motion.div>
     </section>
   );
