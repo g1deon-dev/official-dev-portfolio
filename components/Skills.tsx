@@ -75,8 +75,8 @@ export default function Skills(): ReactElement {
             variants={tileVariants}
             className={
               index === 0
-                ? "bg-surface p-6 hover:shadow-[0_0_20px_-4px_var(--accent)] sm:col-span-2"
-                : "bg-surface p-6 hover:shadow-[0_0_20px_-4px_var(--accent)]"
+                ? "bg-surface p-6 shadow-[0_1px_3px_var(--shadow-tint)] transition-shadow duration-300 hover:shadow-[0_0_20px_-4px_var(--accent)] sm:col-span-2"
+                : "bg-surface p-6 shadow-[0_1px_3px_var(--shadow-tint)] transition-shadow duration-300 hover:shadow-[0_0_20px_-4px_var(--accent)]"
             }
           >
             <h3 className="text-sm font-bold uppercase tracking-[0.2em]">
