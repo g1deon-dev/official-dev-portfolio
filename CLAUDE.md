@@ -6,6 +6,7 @@
 - Hero Exception: the Hero section deliberately breaks two rules above for visual hierarchy on the page's highest-impact section. Its primary CTA and status tag use the accent color at rest, not only on hover. Its secondary CTA, status tag, and boot-log panel each use a single 1px border. Every other component keeps the rules above unchanged.
 - Tile Shadow Exception: Skills tiles, Contact tiles, and Project cards carry a faint, theme-tinted elevation shadow at rest (`--shadow-tint`, ~8% opacity, 3px blur) in addition to their existing accent glow on hover. Every other static container keeps the no-shadow-at-rest rule.
 - Section Marker Exception: a small solid `bg-accent` square (`aria-hidden`, non-interactive) sits at rest before every top-level section heading (Technical Skills, Projects, Contact) and before the footer status line — a fixed 12px marker (10px in the footer). This is the only sanctioned at-rest use of the accent color outside the Hero. Every other element keeps the accent reserved for `:hover`/`:focus` states.
+- Boot-Log Motif: the Hero's monospace kernel-log device — `--font-code` keyed lines with dot leaders, e.g. `[0.301] origin......value` — is a shared identity motif, not Hero-only. The Skills section extends it: a `[time] key......... value` status line under the heading and a lowercase `slug` key on each tile. Reuse this device in its own voice rather than inventing a parallel one; it carries no accent and adds no new primitive.
 
 # Code Constraints
 - Do not add comments to the code.
