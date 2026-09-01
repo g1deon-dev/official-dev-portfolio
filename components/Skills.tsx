@@ -65,8 +65,8 @@ export default function Skills(): ReactElement {
 
   return (
     <section id="stack" className="px-6 py-20">
-      <h2 className="flex items-center gap-3 text-2xl font-bold tracking-tight sm:text-3xl">
-        <span aria-hidden="true" className="inline-block h-2.5 w-2.5 bg-accent" />
+      <h2 className="flex items-center gap-3 text-3xl font-bold tracking-tight sm:text-4xl">
+        <span aria-hidden="true" className="inline-block h-3 w-3 bg-accent" />
         Technical Skills
       </h2>
 
