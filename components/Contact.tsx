@@ -28,11 +28,7 @@ export default function Contact(): ReactElement {
             href={link.href}
             target={link.href.startsWith("mailto:") ? undefined : "_blank"}
             rel={link.href.startsWith("mailto:") ? undefined : "noreferrer"}
-            className={
-              link.label === "Email"
-                ? "group flex min-h-32 flex-col justify-between bg-surface p-6 shadow-[0_1px_3px_var(--shadow-tint)] transition-shadow duration-300 hover:text-accent hover:shadow-[0_0_20px_-4px_var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:col-span-2"
-                : "group flex min-h-32 flex-col justify-between bg-surface p-6 shadow-[0_1px_3px_var(--shadow-tint)] transition-shadow duration-300 hover:text-accent hover:shadow-[0_0_20px_-4px_var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-            }
+            className="group flex min-h-32 flex-col justify-between bg-surface p-6 shadow-[0_1px_3px_var(--shadow-tint)] transition-shadow duration-300 hover:text-accent hover:shadow-[0_0_20px_-4px_var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
             <span className="text-xs uppercase tracking-[0.2em] text-secondary">
               {link.label}
