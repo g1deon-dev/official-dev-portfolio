@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import * as React from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { SITE } from "@/lib/site";
 
 const THEME_STORAGE_KEY = "theme";
@@ -33,6 +34,7 @@ export default function NavBar(): React.ReactElement {
     getThemeSnapshot,
     getThemeServerSnapshot,
   );
+  const prefersReducedMotion = useReducedMotion();
 
   const closeMenu = (): void => setOpen(false);
 
@@ -80,29 +82,39 @@ export default function NavBar(): React.ReactElement {
             onClick={toggleTheme}
             className="flex h-8 w-8 items-center justify-center bg-surface transition-colors duration-300 hover:text-accent hover:shadow-[0_0_16px_-2px_var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
-            {theme === "blood-moon" ? (
-              <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-                className="h-4 w-4"
-                fill="currentColor"
-              >
-                <circle cx="12" cy="12" r="8" />
-              </svg>
-            ) : (
-              <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-                className="h-4 w-4"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-              </svg>
-            )}
+            <motion.span
+              className="flex h-4 w-4 items-center justify-center"
+              animate={{ rotate: theme === "blood-moon" ? 180 : 0 }}
+              transition={
+                prefersReducedMotion
+                  ? { duration: 0 }
+                  : { duration: 0.4, ease: "easeInOut" }
+              }
+            >
+              {theme === "blood-moon" ? (
+                <svg
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  className="h-4 w-4"
+                  fill="currentColor"
+                >
+                  <circle cx="12" cy="12" r="8" />
+                </svg>
+              ) : (
+                <svg
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  className="h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                </svg>
+              )}
+            </motion.span>
           </button>
 
           <button
