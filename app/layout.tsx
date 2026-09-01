@@ -26,10 +26,18 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
       </head>
       <body className="min-h-screen bg-background font-mono text-foreground antialiased">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-6 focus:top-6 focus:z-[100] focus:bg-surface focus:px-4 focus:py-2 focus:text-xs focus:uppercase focus:tracking-[0.2em] focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-accent"
+        >
+          Skip to content
+        </a>
         <div className="mx-auto flex min-h-screen max-w-5xl flex-col">
           <NavBar />
 
-          <div className="flex-1">{children}</div>
+          <div id="main-content" className="flex-1">
+            {children}
+          </div>
 
           <footer className="px-6 py-8 text-xs">
             <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-4">
@@ -41,7 +49,7 @@ export default function RootLayout({
                 <a
                   href={SITE.github}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="mr-[-0.2em] underline decoration-foreground/50 hover:text-accent hover:decoration-accent transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                 >
                   GitHub
@@ -49,7 +57,7 @@ export default function RootLayout({
                 <a
                   href={SITE.linkedin}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="mr-[-0.2em] underline decoration-foreground/50 hover:text-accent hover:decoration-accent transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                 >
                   LinkedIn

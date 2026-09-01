@@ -8,6 +8,6 @@ export const SITE = {
   github: "https://github.com/g1deon-dev",
   linkedin: "https://www.linkedin.com/in/g1deon-dev",
   facebook: "https://facebook.com/g1deondev",
-  discord: "https://discord.com/users/g1deondev",
+  discord: "g1deondev",
   email: "yantoelijah14@gmail.com",
 } as const;

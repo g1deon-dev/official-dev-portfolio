@@ -14,7 +14,15 @@ const BOOT_LINES: readonly BootLine[] = [
     time: "0.001",
     content: (
       <>
-        BOOT <span className="text-accent">elijah-dev</span>
+        BOOT <span className="text-code-string">{SITE.handle}</span>
+      </>
+    ),
+  },
+  {
+    time: "0.024",
+    content: (
+      <>
+        user........<span className="text-code-string">{SITE.name}</span>
       </>
     ),
   },
@@ -60,19 +68,21 @@ const BOOT_LINES: readonly BootLine[] = [
   },
 ];
 
+const BOOT_SUMMARY = `System profile for ${SITE.name}: role Full-Stack Builder; stack Next.js, React, Tailwind; focus Web, IoT, Data Science; status ${SITE.status}; origin Bicol University.`;
+
 const listVariants: Variants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.12,
+      staggerChildren: 0.1,
       delayChildren: 0.1,
     },
   },
 };
 
 const lineVariants: Variants = {
-  hidden: { opacity: 0, y: 4 },
-  visible: { opacity: 1, y: 0 },
+  hidden: { y: 4 },
+  visible: { y: 0 },
 };
 
 const HEADLINE_WORDS: readonly string[] = "I build full-stack web applications".split(" ");
@@ -81,15 +91,15 @@ const headlineContainer: Variants = {
   hidden: {},
   show: {
     transition: {
-      staggerChildren: 0.15,
+      staggerChildren: 0.09,
       delayChildren: 0,
     },
   },
 };
 
 const headlineWord: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+  hidden: { y: 12 },
+  show: { y: 0, transition: { duration: 0.4, ease: "easeOut" } },
 };
 
 const ctaContainer: Variants = {
@@ -97,24 +107,29 @@ const ctaContainer: Variants = {
   show: {
     transition: {
       staggerChildren: 0.1,
-      delayChildren: 0.9,
+      delayChildren: 0.3,
     },
   },
 };
 
 const ctaItem: Variants = {
-  hidden: { opacity: 0, y: 8 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+  hidden: { y: 8 },
+  show: { y: 0, transition: { duration: 0.4, ease: "easeOut" } },
 };
 
 export default function Hero(): ReactElement {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <section className="grid grid-cols-1 gap-8 px-6 py-20 md:grid-cols-[2fr_3fr]">
+    <section
+      id="top"
+      aria-labelledby="hero-heading"
+      className="grid grid-cols-1 gap-8 px-6 py-20 md:grid-cols-2"
+    >
       <div>
         <motion.h1
-          className="max-w-xl text-[36px] font-bold leading-[1.2] tracking-[-1px] md:text-[52px]"
+          id="hero-heading"
+          className="max-w-xl text-[36px] font-bold leading-[1.2] tracking-tight md:text-[52px]"
           initial={prefersReducedMotion ? "show" : "hidden"}
           animate="show"
           variants={headlineContainer}
@@ -132,19 +147,14 @@ export default function Hero(): ReactElement {
 
         <motion.p
           className="mt-4 inline-block border border-accent px-3 py-1 text-xs uppercase tracking-[0.2em] text-accent"
-          style={{ transformOrigin: "left" }}
-          initial={prefersReducedMotion ? { scaleX: 1 } : { scaleX: 0 }}
+          initial={{ opacity: 1 }}
           animate={{
-            scaleX: 1,
             opacity: prefersReducedMotion ? 1 : [1, 0.5, 1],
           }}
           transition={
             prefersReducedMotion
               ? undefined
-              : {
-                  scaleX: { duration: 0.4, ease: "easeOut", delay: 0.6 },
-                  opacity: { duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1 },
-                }
+              : { duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1 }
           }
         >
           [ {SITE.status} ]
@@ -152,11 +162,12 @@ export default function Hero(): ReactElement {
 
         <motion.p
           className="mt-6 max-w-md text-lg leading-relaxed text-secondary"
-          initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={prefersReducedMotion ? undefined : { duration: 0.5, ease: "easeOut", delay: 0.8 }}
+          initial={prefersReducedMotion ? { y: 0 } : { y: 8 }}
+          animate={{ y: 0 }}
+          transition={prefersReducedMotion ? undefined : { duration: 0.5, ease: "easeOut", delay: 0.4 }}
         >
-          BSIT Student at Bicol University | Focused on Software Engineering, Full-Stack Web Development, and Data Science.
+          I&apos;m {SITE.name} — BSIT student at Bicol University, focused on Software
+          Engineering, Full-Stack Web Development, and Data Science.
         </motion.p>
 
         <motion.div
@@ -183,19 +194,25 @@ export default function Hero(): ReactElement {
       </div>
 
       <motion.div
-        className="border border-[#1f2937] bg-surface p-8 font-code text-[13px] leading-[1.6]"
+        role="img"
+        aria-label={BOOT_SUMMARY}
+        className="overflow-x-auto border border-card-border bg-surface p-6 font-code text-[13px] leading-[1.6] md:p-8"
         initial={prefersReducedMotion ? "visible" : "hidden"}
         animate="visible"
         variants={listVariants}
       >
         {BOOT_LINES.map((line) => (
-          <motion.p key={line.time} variants={prefersReducedMotion ? undefined : lineVariants}>
+          <motion.p
+            key={line.time}
+            aria-hidden="true"
+            variants={prefersReducedMotion ? undefined : lineVariants}
+          >
             <span className="text-secondary">[{line.time}]</span> {line.content}
           </motion.p>
         ))}
         <motion.span
           aria-hidden="true"
-          className="inline-block h-[13px] w-[7px] bg-accent align-middle"
+          className="inline-block h-[13px] w-[7px] bg-foreground align-middle"
           animate={prefersReducedMotion ? { opacity: 1 } : { opacity: [1, 1, 0, 0] }}
           transition={
             prefersReducedMotion
