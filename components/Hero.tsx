@@ -111,7 +111,7 @@ export default function Hero(): ReactElement {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <section className="grid grid-cols-1 gap-12 px-6 py-20 md:grid-cols-[3fr_2fr]">
+    <section className="grid grid-cols-1 gap-8 px-6 py-20 md:grid-cols-[2fr_3fr]">
       <div>
         <motion.h1
           className="max-w-xl text-[36px] font-bold leading-[1.2] tracking-[-1px] md:text-[52px]"
