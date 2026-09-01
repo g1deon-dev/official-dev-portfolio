@@ -24,7 +24,7 @@ export default function ProjectCard({ project }: { project: Project }): ReactEle
         whileHover={prefersReducedMotion ? undefined : { y: -4 }}
         whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
         transition={{ duration: 0.3, ease: "easeOut" }}
-        className="flex h-full flex-col bg-surface p-8 hover:shadow-[0_0_20px_-4px_var(--accent)]"
+        className="flex h-full flex-col bg-surface p-8 shadow-[0_1px_3px_var(--shadow-tint)] transition-shadow duration-300 hover:shadow-[0_0_20px_-4px_var(--accent)]"
       >
         <div className="flex items-start justify-between gap-4">
           <span className="text-xs uppercase tracking-[0.2em] text-secondary">
